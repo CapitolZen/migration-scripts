@@ -33,6 +33,10 @@ class MyHTMLParser(HTMLParser):
         else:
             data = data.strip()
             if "SB" in data or "HB" in data or "SR" in data:
+                if data.startswith('SB 0'):
+                    parts = data.split('SB 0')
+                    num = parts[1].lstrip()
+                    data = state_id = "SB %s" % num
                 self.results[self.current_client].append(data)
 
     def get_data(self):
