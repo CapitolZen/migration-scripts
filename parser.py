@@ -32,11 +32,10 @@ class MyHTMLParser(HTMLParser):
             self.current_client = data
         else:
             data = data.strip()
-            if "SB" in data or "HB" in data or "SR" in data:
-                if data.startswith('SB 0'):
-                    parts = data.split('SB 0')
-                    num = parts[1].lstrip()
-                    data = state_id = "SB %s" % num
+            if "SB" in data or "HB" in data or "SR" in data or "HR" in data or "SJ" in data or "HJ" in data:
+                parts = data.split(' ')
+                num = parts[1].lstrip()
+                data = "%s %s" % (parts[0], num)
                 self.results[self.current_client].append(data)
 
     def get_data(self):
