@@ -34,7 +34,8 @@ class MyHTMLParser(HTMLParser):
             data = data.strip()
             if "SB" in data or "HB" in data or "SR" in data or "HR" in data or "SJ" in data or "HJ" in data:
                 parts = data.split(' ')
-                num = parts[1].lstrip()
+                print(parts)
+                num = parts[1].lstrip('0')
                 data = "%s %s" % (parts[0], num)
                 self.results[self.current_client].append(data)
 
